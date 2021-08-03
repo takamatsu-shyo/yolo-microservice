@@ -10,17 +10,19 @@ import darknet.darknet as darknet
 app = Flask(__name__)
 
 network, class_names, class_colors = darknet.load_network(
-            './darknet/cfg/yolov4.cfg',
-            './darknet/cfg/coco_m.data',
-            './darknet/yolov4.weights',
-            batch_size=1
-        )
+    './darknet/cfg/yolov4.cfg',
+    './darknet/cfg/coco_m.data',
+    './darknet/yolov4.weights',
+    batch_size=1
+)
+
 
 @app.route('/ping', methods=['GET'])
 def ping():
     output = resourcePing.main()
     json = output.toJSON()
     return Response(json, mimetype='appliction/json')
+
 
 @app.route('/resolution', methods=['POST'])
 def resolution():
