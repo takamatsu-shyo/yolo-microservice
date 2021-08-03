@@ -1,4 +1,5 @@
 import json
+import logging
 
 class ResolutionInput:
     def __init__(self, imageBase64: str):

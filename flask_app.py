@@ -3,6 +3,7 @@ from flask import request
 from flask import Response
 from resources import resourcePing, resourceResolution
 from message_protocol.resolution_input import parseResolutionInput
+import json
 
 app = Flask(__name__)
 
@@ -16,5 +17,5 @@ def ping():
 def resolution():
     input = parseResolutionInput(request.json)
     output = resourceResolution.main(input)
-    json = output.toJSON()
-    return Response(json, mimetype='appliccation/json')
+    output_json = json.dumps(output)
+    return Response(output_json, mimetype='appliccation/json')
